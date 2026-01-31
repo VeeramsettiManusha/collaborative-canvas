@@ -186,8 +186,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Your Name**
-- GitHub: [@VeeramsettiManusha](https://github.com/YOUR_USERNAME)
-- LinkedIn: [manusha-veeramsetti](https://linkedin.com/in/your-profile)
+- GitHub: [@VeeramsettiManusha](https://github.com/VeeramsettiManusha)
+- LinkedIn: [manusha-veeramsetti](https://linkedin.com/in/manusha-veeramsetti)
 
 ## 📞 Support
 
