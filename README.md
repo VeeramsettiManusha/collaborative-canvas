@@ -1,51 +1,63 @@
-# 🎨 Real-Time Collaborative Drawing Canvas
+# 🎨 Collaborative Canvas
 
-A multi-user drawing application where multiple people can draw simultaneously on a shared canvas with real-time synchronization.
+A real-time collaborative drawing application where multiple users can draw together on a shared canvas. Built with HTML5 Canvas, Socket.IO, and Node.js.
 
-## Features
+![Collaborative Canvas Demo](https://img.shields.io/badge/Status-Active-success)
+![Node.js](https://img.shields.io/badge/Node.js-v14+-green)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-v4.0+-blue)
 
-- **Real-time Drawing**: See other users' drawings as they draw (not after they finish)
-- **Drawing Tools**: Brush and eraser with customizable colors and stroke width
-- **User Indicators**: Ghost cursors showing where other users are drawing
-- **Global Undo/Redo**: Works across all users with per-user history tracking
-- **Room System**: Multiple isolated canvases for different sessions
-- **Mobile Support**: Touch drawing support for tablets and phones
-- **Performance Metrics**: FPS counter and latency display
+## ✨ Features
 
-## Tech Stack
+- 🎨 **Real-time Drawing** - Draw with multiple users simultaneously
+- 👥 **Multi-user Support** - See who's online and their cursors in real-time
+- 🎯 **Drawing Tools** - Brush and Eraser with customizable colors and stroke width
+- ↩️ **Undo/Redo** - Per-user undo and redo functionality
+- 🏠 **Room System** - Create or join different drawing rooms
+- 📱 **Responsive Design** - Works on desktop and mobile devices
+- ⚡ **Low Latency** - Optimized for smooth drawing experience
 
-- **Frontend**: Vanilla JavaScript, HTML5 Canvas API, CSS3
-- **Backend**: Node.js, Express, Socket.io
-- **No drawing libraries** - Pure Canvas API implementation
+## 🖼️ Screenshots
 
-## Setup Instructions
+<!-- Add screenshots of your application here -->
+<img width="1918" height="914" alt="image" src="https://github.com/user-attachments/assets/b90ceca0-aede-4e7b-ae96-2834f506c08e" />
+<img width="1917" height="912" alt="image" src="https://github.com/user-attachments/assets/0bedca5e-c9c0-42f2-adb0-d6be5f0604e4" />
+
+
+
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js v18+ installed
+
+- Node.js (v14 or higher)
 - npm or yarn
 
 ### Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/collaborative-canvas.git
-cd collaborative-canvas
-Install dependencies:
-npm install
-Start the server:
-npm start
-Open your browser and navigate to:
-http://localhost:3000
-Testing with Multiple Users
-Open the app in multiple browser windows/tabs
-Enter different usernames for each window
-Use the same room ID to join the same canvas
-Start drawing and see real-time synchronization!
-For network testing:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/VeeramsettiManusha/collaborative-canvas.git
+   cd collaborative-canvas
+   ```
 
-Find your local IP address
-Other devices on the same network can connect via http://YOUR_IP:3000
-Project Structure
+2. **Install server dependencies**
+   ```bash
+   cd server
+   npm install
+   ```
+
+3. **Start the server**
+   ```bash
+   npm start
+   ```
+
+4. **Open in browser**
+   ```
+   http://localhost:3000
+   ```
+
+## 📁 Project Structure
+
+```
 collaborative-canvas/
 ├── client/
 │   ├── index.html      # Main UI structure
@@ -60,33 +72,127 @@ collaborative-canvas/
 ├── package.json
 ├── README.md
 └── ARCHITECTURE.md
-Known Limitations
-Canvas state is stored in memory (resets on server restart)
-No user authentication (anyone can join any room)
-Maximum recommended users per room: ~20 (for optimal performance)
-Undo only works for your own strokes
-Time Spent
-Planning & Architecture: 2 hours
-Canvas Implementation: 4 hours
-WebSocket Integration: 3 hours
-Undo/Redo System: 2 hours
-UI/UX & Styling: 2 hours
-Testing & Bug Fixes: 2 hours
-Documentation: 1 hour
-Total: ~16 hours
+```
 
-Deployment
-Render (Recommended)
-Create a new Web Service on Render
-Connect your GitHub repository
-Set build command: npm install
-Set start command: npm start
-Railway
-Create new project from GitHub
-Railway auto-detects Node.js
-Deploy automatically
-Heroku
-heroku create your-app-name
-git push heroku main
-License
-MIT
+## 🛠️ Tech Stack
+
+**Frontend:**
+- HTML5 Canvas
+- CSS3
+- Vanilla JavaScript
+- Socket.IO Client
+
+**Backend:**
+- Node.js
+- Express.js
+- Socket.IO Server
+
+## 🎮 Usage
+
+1. **Join a Room**
+   - Enter your name
+   - Optionally specify a room ID (leave empty for default room)
+
+2. **Drawing**
+   - Select Brush or Eraser tool
+   - Choose a color from the palette
+   - Adjust stroke width
+   - Draw on the canvas!
+
+3. **Collaboration**
+   - See other users' cursors in real-time
+   - Watch drawings appear as others create them
+   - Use Undo/Redo for your own strokes
+
+4. **Keyboard Shortcuts**
+   - `Ctrl + Z` - Undo
+   - `Ctrl + Y` - Redo
+   - `B` - Switch to Brush
+   - `E` - Switch to Eraser
+
+## 📡 WebSocket Events
+
+### Client → Server
+- `join_room` - Join a drawing room
+- `draw_start` - Start a new stroke
+- `draw_move` - Continue drawing
+- `draw_end` - Complete stroke
+- `cursor_move` - Update cursor position
+- `undo` / `redo` - Undo/redo strokes
+- `clear_canvas` - Clear the canvas
+
+### Server → Client
+- `user_info` - Assigned user information
+- `canvas_state` - Initial canvas state
+- `user_joined` / `user_left` - User notifications
+- `draw_start` / `draw_move` / `draw_end` - Remote drawing
+- `cursor_update` - Remote cursor positions
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed technical documentation.
+
+## 🔧 Configuration
+
+### Server Configuration (server/server.js)
+
+```javascript
+const PORT = process.env.PORT || 3000;
+const MAX_USERS_PER_ROOM = 20; // Recommended limit
+```
+
+### Client Configuration
+
+No configuration needed - connects to server automatically.
+
+## 🚀 Deployment
+
+### Deploy to Heroku
+
+1. Create Heroku app
+   ```bash
+   heroku create your-app-name
+   ```
+
+2. Push to Heroku
+   ```bash
+   git push heroku main
+   ```
+
+### Deploy to Railway/Render
+
+1. Connect your GitHub repository
+2. Set build command: `cd server && npm install`
+3. Set start command: `cd server && npm start`
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Socket.IO for real-time communication
+- HTML5 Canvas API
+- Inter font family
+
+## 👨‍💻 Author
+
+**Your Name**
+- GitHub: [@VeeramsettiManusha](https://github.com/YOUR_USERNAME)
+- LinkedIn: [manusha-veeramsetti](https://linkedin.com/in/your-profile)
+
+## 📞 Support
+
+If you have any questions or issues, please open an issue on GitHub.
+
+---
+
+⭐ Star this repo if you find it helpful!
